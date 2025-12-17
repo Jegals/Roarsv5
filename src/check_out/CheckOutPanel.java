@@ -727,6 +727,22 @@ public class CheckOutPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         calculateTotal();
     }//GEN-LAST:event_lessDiscKeyReleased
+    private void calculateTotal() {
+    try {
+        double baseRoomCharge = Double.parseDouble(roomCharges.getText().isEmpty() ? "0" : roomCharges.getText());
+        double extraPerson = Double.parseDouble(addPersonFees.getText().isEmpty() ? "0" : addPersonFees.getText());
+        double extraReq = Double.parseDouble(addRequest.getText().isEmpty() ? "0" : addRequest.getText());
+        double discount = Double.parseDouble(lessDisc.getText().isEmpty() ? "0" : lessDisc.getText());
+
+        double finalTotal = (baseRoomCharge + extraPerson + extraReq) - discount;
+
+        if (finalTotal < 0) finalTotal = 0;
+        txtotalAmount.setText(String.format("%.2f", finalTotal));
+        
+    } catch (NumberFormatException e) {
+        txtotalAmount.setText("0.00");
+    }
+}
 
     private void addPersonFeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPersonFeesActionPerformed
         // TODO add your handling code here:
