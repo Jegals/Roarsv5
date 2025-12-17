@@ -1,0 +1,3 @@
+101,Standard,Single,1,100,Occupied
+102,Deluxe,Double,2,150,Available
+103,Standard,Single,1,150,Available

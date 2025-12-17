@@ -1,0 +1,4 @@
+101 Deluxe Standard 2 100 Vacant
+102 Deluxe Single 2 500 Vacant
+101 Standard Standard 1 150 Available
+102 Standard Double 2 250 Available
