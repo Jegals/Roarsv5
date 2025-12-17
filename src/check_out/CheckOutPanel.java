@@ -8,6 +8,10 @@ package check_out;
  *
  * @author Acer
  */
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import javax.swing.JOptionPane;
+
 public class CheckOutPanel extends javax.swing.JPanel {
 
     /**
@@ -622,7 +626,7 @@ public class CheckOutPanel extends javax.swing.JPanel {
 
         // ... (Existing validations for empty string and isRoomValid) ...
 
-        CheckOutPanel.Customer customer = checkout.searchCustomerByRoom(roomNumber);
+        CheckOutData.Customer customer = checkout.searchCustomerByRoom(roomNumber);
 
         if (customer != null) {
             // 1. Fill Text Info
