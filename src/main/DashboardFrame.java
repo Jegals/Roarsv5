@@ -78,7 +78,7 @@ public class DashboardFrame extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(143, 171, 212));
+        jPanel1.setBackground(new java.awt.Color(75, 146, 219));
 
         btnReportAndRevenue.setText("Reports & Revenue");
         btnReportAndRevenue.addActionListener(new java.awt.event.ActionListener() {
@@ -115,6 +115,7 @@ public class DashboardFrame extends javax.swing.JFrame {
             }
         });
 
+        btnDashboard.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnDashboard.setText("Dashboard");
         btnDashboard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,7 +183,7 @@ public class DashboardFrame extends javax.swing.JFrame {
 
     private void btnCheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckOutActionPerformed
         // TODO add your handling code here:
-        //showForm(new check_out.CheckOutPanels());
+        showForm(new check_out.CheckOutPanel());
     }//GEN-LAST:event_btnCheckOutActionPerformed
 
     private void btnReportAndRevenueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportAndRevenueActionPerformed
