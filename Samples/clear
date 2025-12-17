@@ -1,0 +1,19 @@
+private void clearFields() {
+    txtName.setText("");
+    txtMobile.setText("");
+    txtEmail.setText("");
+    txtRoomNum.setText("");
+    txtRoomType.setText("");
+    txtBedType.setText("");
+    txtPrice.setText("");
+    txtCheckInDate.setText("");
+    checkOutDate.setText("");
+    txtDays.setText("");
+    addPersonFees.setText("");
+    addRequest.setText("");
+    lessDisc.setText("");
+    roomCharges.setText("");
+    totalStay.setText("");
+    txtotalAmount.setText("");
+    SearchRoomNum.setText("");
+}
