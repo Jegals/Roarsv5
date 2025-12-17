@@ -51,14 +51,14 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="21" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="btnCheckIn" min="-2" pref="131" max="-2" attributes="0"/>
-                      <Component id="btnDashboard" min="-2" pref="131" max="-2" attributes="0"/>
-                      <Component id="btnCheckOut" min="-2" pref="131" max="-2" attributes="0"/>
-                      <Component id="btnManageRooms" min="-2" pref="131" max="-2" attributes="0"/>
-                      <Component id="btnBillAndReceipt" min="-2" pref="131" max="-2" attributes="0"/>
-                      <Component id="btnReportAndRevenue" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="12" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="btnReportAndRevenue" max="32767" attributes="0"/>
+                      <Component id="btnBillAndReceipt" alignment="1" max="32767" attributes="0"/>
+                      <Component id="btnCheckOut" alignment="1" max="32767" attributes="0"/>
+                      <Component id="btnCheckIn" alignment="1" max="32767" attributes="0"/>
+                      <Component id="btnManageRooms" alignment="1" max="32767" attributes="0"/>
+                      <Component id="btnDashboard" alignment="1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               </Group>
@@ -87,6 +87,9 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="btnReportAndRevenue">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Reports &amp; Revenue"/>
           </Properties>
           <Events>
@@ -95,7 +98,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnBillAndReceipt">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Billing &amp; Receipts"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Receipts"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBillAndReceiptActionPerformed"/>
@@ -103,6 +109,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnManageRooms">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Manage Rooms"/>
           </Properties>
           <Events>
@@ -111,6 +120,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnCheckOut">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Check-Out"/>
           </Properties>
           <Events>
@@ -119,6 +131,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnCheckIn">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Check-In"/>
           </Properties>
           <Events>

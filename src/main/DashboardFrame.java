@@ -80,6 +80,7 @@ public class DashboardFrame extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(75, 146, 219));
 
+        btnReportAndRevenue.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnReportAndRevenue.setText("Reports & Revenue");
         btnReportAndRevenue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,13 +88,15 @@ public class DashboardFrame extends javax.swing.JFrame {
             }
         });
 
-        btnBillAndReceipt.setText("Billing & Receipts");
+        btnBillAndReceipt.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnBillAndReceipt.setText("Receipts");
         btnBillAndReceipt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBillAndReceiptActionPerformed(evt);
             }
         });
 
+        btnManageRooms.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnManageRooms.setText("Manage Rooms");
         btnManageRooms.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,6 +104,7 @@ public class DashboardFrame extends javax.swing.JFrame {
             }
         });
 
+        btnCheckOut.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnCheckOut.setText("Check-Out");
         btnCheckOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,6 +112,7 @@ public class DashboardFrame extends javax.swing.JFrame {
             }
         });
 
+        btnCheckIn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnCheckIn.setText("Check-In");
         btnCheckIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,14 +133,14 @@ public class DashboardFrame extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnCheckIn, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnManageRooms, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBillAndReceipt, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReportAndRevenue))
+                .addContainerGap(12, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnReportAndRevenue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnBillAndReceipt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCheckOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCheckIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnManageRooms, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDashboard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18))
         );
         jPanel1Layout.setVerticalGroup(
