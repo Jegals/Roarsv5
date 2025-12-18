@@ -20,6 +20,8 @@ public class CheckOutPanel extends javax.swing.JPanel {
     
     CheckOutData checkout = new CheckOutData();
     
+    private double hiddenExtraFee = 0.0;
+    
     public CheckOutPanel() {
         initComponents();
     }
@@ -85,6 +87,7 @@ public class CheckOutPanel extends javax.swing.JPanel {
         CheckOutPanel.setBackground(new java.awt.Color(153, 204, 255));
         CheckOutPanel.setMaximumSize(new java.awt.Dimension(1200, 700));
         CheckOutPanel.setPreferredSize(new java.awt.Dimension(1200, 700));
+        CheckOutPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         SearchPanel.setBackground(new java.awt.Color(153, 204, 255));
 
@@ -124,15 +127,20 @@ public class CheckOutPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("CUSTOMER CHECK OUT SECTION");
+        CheckOutPanel.add(SearchPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1054, 6, 428, -1));
 
-        customerRoomPanel.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel1.setText("CUSTOMER CHECK OUT SECTION");
+        CheckOutPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+
+        customerRoomPanel.setBackground(new java.awt.Color(75, 146, 219));
         customerRoomPanel.setForeground(new java.awt.Color(204, 204, 204));
 
-        CheckOutSection.setBackground(new java.awt.Color(153, 153, 153));
+        CheckOutSection.setBackground(new java.awt.Color(0, 102, 204));
 
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("CUSTOMER + ROOM INFO");
 
         javax.swing.GroupLayout CheckOutSectionLayout = new javax.swing.GroupLayout(CheckOutSection);
@@ -205,7 +213,7 @@ public class CheckOutPanel extends javax.swing.JPanel {
             }
         });
 
-        jPanel9.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel9.setBackground(new java.awt.Color(0, 102, 204));
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -291,24 +299,27 @@ public class CheckOutPanel extends javax.swing.JPanel {
                             .addGroup(customerRoomPanelLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addGroup(customerRoomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel18)
-                                    .addComponent(jLabel12)
-                                    .addComponent(txtDays, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(6, 6, 6)))
+                                    .addComponent(jLabel12)))
+                            .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDays, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 140, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(customerRoomPanelLayout.createSequentialGroup()
-                .addGap(108, 108, 108)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel10)
-                .addGap(141, 141, 141))
-            .addGroup(customerRoomPanelLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(20, 20, 20)
                 .addComponent(txtCheckInDate, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(checkOutDate, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customerRoomPanelLayout.createSequentialGroup()
+                .addGroup(customerRoomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(customerRoomPanelLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(checkOutDate, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(customerRoomPanelLayout.createSequentialGroup()
+                        .addGap(108, 108, 108)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(141, 141, 141))
         );
         customerRoomPanelLayout.setVerticalGroup(
             customerRoomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -335,11 +346,10 @@ public class CheckOutPanel extends javax.swing.JPanel {
                     .addComponent(jLabel18)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(customerRoomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(customerRoomPanelLayout.createSequentialGroup()
-                        .addComponent(txtEmail)
-                        .addGap(12, 12, 12)))
+                .addGroup(customerRoomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
                 .addGroup(customerRoomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12)
                     .addComponent(jLabel8))
@@ -351,20 +361,23 @@ public class CheckOutPanel extends javax.swing.JPanel {
                 .addGroup(customerRoomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(customerRoomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(customerRoomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtCheckInDate, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(checkOutDate, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
+                .addGap(8, 8, 8)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        FindBillConfiPanel.setBackground(new java.awt.Color(204, 204, 204));
+        CheckOutPanel.add(customerRoomPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, -1, -1));
 
-        jPanel5.setBackground(new java.awt.Color(153, 153, 153));
+        FindBillConfiPanel.setBackground(new java.awt.Color(75, 146, 219));
+
+        jPanel5.setBackground(new java.awt.Color(0, 102, 204));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("FINAL BILLING & CONFIRMATION ");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -372,15 +385,15 @@ public class CheckOutPanel extends javax.swing.JPanel {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addContainerGap()
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
-                .addComponent(jLabel13)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -390,7 +403,7 @@ public class CheckOutPanel extends javax.swing.JPanel {
 
         jLabel16.setText("Additional Request:");
 
-        jPanel7.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel7.setBackground(new java.awt.Color(0, 102, 204));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -456,7 +469,7 @@ public class CheckOutPanel extends javax.swing.JPanel {
             }
         });
 
-        jPanel10.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel10.setBackground(new java.awt.Color(0, 102, 204));
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -516,7 +529,7 @@ public class CheckOutPanel extends javax.swing.JPanel {
                     .addComponent(addRequest)
                     .addComponent(totalStay)
                     .addComponent(roomCharges)
-                    .addComponent(addPersonFees, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
+                    .addComponent(addPersonFees))
                 .addGap(17, 17, 17))
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -568,51 +581,19 @@ public class CheckOutPanel extends javax.swing.JPanel {
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        javax.swing.GroupLayout CheckOutPanelLayout = new javax.swing.GroupLayout(CheckOutPanel);
-        CheckOutPanel.setLayout(CheckOutPanelLayout);
-        CheckOutPanelLayout.setHorizontalGroup(
-            CheckOutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(CheckOutPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 406, Short.MAX_VALUE)
-                .addComponent(SearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(262, 262, 262))
-            .addGroup(CheckOutPanelLayout.createSequentialGroup()
-                .addGap(144, 144, 144)
-                .addComponent(customerRoomPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(FindBillConfiPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(302, Short.MAX_VALUE))
-        );
-        CheckOutPanelLayout.setVerticalGroup(
-            CheckOutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(CheckOutPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(CheckOutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(SearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(29, 29, 29)
-                .addGroup(CheckOutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(customerRoomPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(FindBillConfiPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(199, Short.MAX_VALUE))
-        );
+        CheckOutPanel.add(FindBillConfiPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 220, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(CheckOutPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1478, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(CheckOutPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1765, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 6, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(CheckOutPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 805, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 195, Short.MAX_VALUE))
+            .addComponent(CheckOutPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -631,6 +612,12 @@ public class CheckOutPanel extends javax.swing.JPanel {
         if (customer != null) {
             // 1. Fill Text Info
             txtName.setText(customer.name.replace("_", " "));
+            
+            txtMobile.setText(customer.mobile);
+            txtEmail.setText(customer.email);
+            txtRoomType.setText(customer.roomType);
+            txtBedType.setText(customer.bedType);
+            
             txtRoomNum.setText(customer.roomNumber);
             txtPrice.setText(String.valueOf(customer.price));
             txtCheckInDate.setText(customer.checkIn);
@@ -638,6 +625,8 @@ public class CheckOutPanel extends javax.swing.JPanel {
             // 2. Load ALL Fees from File
             addPersonFees.setText(String.valueOf(customer.extraPersonFee));
             addRequest.setText(String.valueOf(customer.extraRequestFee));
+           
+            
             lessDisc.setText(String.valueOf(customer.discount)); // Loaded from File
 
             // 3. Calculate Stay Duration
@@ -654,11 +643,13 @@ public class CheckOutPanel extends javax.swing.JPanel {
 
             // 4. Calculate Final Total
             double roomTotal = customer.price * days;
-            roomCharges.setText(String.format("%.2f", roomTotal));
+            roomCharges.setText("" + roomTotal);
 
             // Formula: (Room Charge + Extras) - Discount
             double finalTotal = (roomTotal + customer.extraPersonFee + customer.extraRequestFee) - customer.discount;
-            txtotalAmount.setText(String.format("%.2f", Math.max(0, finalTotal)));
+            txtotalAmount.setText("" + finalTotal);
+            
+            hiddenExtraFee = customer.extraRequestFee;
 
         } else {
             JOptionPane.showMessageDialog(this, "No active guest in room " + roomNumber);
@@ -667,6 +658,26 @@ public class CheckOutPanel extends javax.swing.JPanel {
         calculateTotal();
 
     }//GEN-LAST:event_btnSearchActionPerformed
+    
+    private void clearFields() {
+    txtName.setText("");
+    txtMobile.setText("");
+    txtEmail.setText("");
+    txtRoomNum.setText("");
+    txtRoomType.setText("");
+    txtBedType.setText("");
+    txtPrice.setText("");
+    txtCheckInDate.setText("");
+    checkOutDate.setText("");
+    txtDays.setText("");
+    addPersonFees.setText("");
+    addRequest.setText("");
+    lessDisc.setText("");
+    roomCharges.setText("");
+    totalStay.setText("");
+    txtotalAmount.setText("");
+    SearchRoomNum.setText("");
+}
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
@@ -711,7 +722,45 @@ public class CheckOutPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_txtRoomNumActionPerformed
 
     private void btnConfirmCheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmCheckOutActionPerformed
+    String roomNumber = txtRoomNum.getText().trim();
+        
+        // 1. Validation: Check if a room is selected
+        if (roomNumber.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please search for a room first.");
+            return;
+        }
+        
+        // 2. Validation: Check if total is valid
+        if (txtotalAmount.getText().equals("0.00") || txtotalAmount.getText().isEmpty()) {
+             JOptionPane.showMessageDialog(this, "Total amount is invalid. Please check details.");
+             return;
+        }
 
+        try {
+            // 3. Gather Final Numbers from the Text Fields (and hidden variable)
+            double extraPerson = Double.parseDouble(addPersonFees.getText().isEmpty() ? "0" : addPersonFees.getText());
+            
+            // Use the hidden variable for Extra Request (Safe)
+            double extraRequest = hiddenExtraFee; 
+            
+            double discount = Double.parseDouble(lessDisc.getText().isEmpty() ? "0" : lessDisc.getText());
+            double total = Double.parseDouble(txtotalAmount.getText());
+
+            // 4. Call the Data Class to Process Checkout
+            // This saves to bills.txt, records.txt and updates customers.txt
+            boolean success = checkout.checkoutCustomer(roomNumber, extraPerson, extraRequest, discount, total);
+
+            // 5. Feedback
+            if (success) {
+                JOptionPane.showMessageDialog(this, "Checkout Successful!\nGuest Checked Out & Bill Saved.");
+                clearFields(); // Clear the screen
+            } else {
+                JOptionPane.showMessageDialog(this, "Checkout Failed. Please try again.");
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error processing checkout: " + e.getMessage());
+        }
     }//GEN-LAST:event_btnConfirmCheckOutActionPerformed
 
     private void addRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRequestActionPerformed
@@ -731,13 +780,20 @@ public class CheckOutPanel extends javax.swing.JPanel {
     try {
         double baseRoomCharge = Double.parseDouble(roomCharges.getText().isEmpty() ? "0" : roomCharges.getText());
         double extraPerson = Double.parseDouble(addPersonFees.getText().isEmpty() ? "0" : addPersonFees.getText());
-        double extraReq = Double.parseDouble(addRequest.getText().isEmpty() ? "0" : addRequest.getText());
+        
+        
+        double extraReq = hiddenExtraFee;
         double discount = Double.parseDouble(lessDisc.getText().isEmpty() ? "0" : lessDisc.getText());
+        
+        
 
         double finalTotal = (baseRoomCharge + extraPerson + extraReq) - discount;
+        
+        txtotalAmount.setText("" + finalTotal);
 
         if (finalTotal < 0) finalTotal = 0;
-        txtotalAmount.setText(String.format("%.2f", finalTotal));
+        
+        txtotalAmount.setText("" + finalTotal);
         
     } catch (NumberFormatException e) {
         txtotalAmount.setText("0.00");

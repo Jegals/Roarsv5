@@ -10,6 +10,7 @@ package main;
  * @author Acer
  */  
 
+import try_error.registerFRamee;
 import javax.swing.JOptionPane;
 
 public class LogInFrame extends javax.swing.JFrame {
@@ -47,7 +48,6 @@ public class LogInFrame extends javax.swing.JFrame {
         checkbox = new java.awt.Checkbox();
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jToolBar1 = new javax.swing.JToolBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -111,11 +111,7 @@ public class LogInFrame extends javax.swing.JFrame {
 
         jLabel4.setBackground(new java.awt.Color(75, 146, 219));
         jLabel4.setOpaque(true);
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, -90, 580, 720));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/ID.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 30, 530, 530));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 700));
 
         jToolBar1.setRollover(true);
         getContentPane().add(jToolBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 30, -1, -1));
@@ -188,7 +184,7 @@ else{
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        new registerFRame().setVisible(true);
+        new registerFRamee().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -223,7 +219,6 @@ else{
     private javax.swing.JButton btnLogIn;
     private java.awt.Checkbox checkbox;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

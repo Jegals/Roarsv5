@@ -178,6 +178,8 @@ public class CheckInPanel extends javax.swing.JPanel {
                 isPromoMessageShown = false;
             }
             
+            totalChargeField.setText(String.valueOf(total));
+            
         } catch (Exception e) {
             // ignore errors while typing
         }
@@ -252,14 +254,14 @@ public class CheckInPanel extends javax.swing.JPanel {
                 // we expect 5 parts; name, mobile, room, date, price
                 if(parts.length >= 21) {
                     
-                    String room = parts[6];
+                    String room = parts[0];
                     
-                    String name = parts[0];
-                    String mobile = parts[1];
-                    String email = parts[2];
-                    String gender = parts[3];
-                    String nationality = parts[4];
-                    String address = parts[5];
+                    String name = parts[1];
+                    String mobile = parts[2];
+                    String email = parts[3];
+                    String gender = parts[4];
+                    String nationality = parts[5];
+                    String address = parts[6];
                                         
                     
                     String rType = parts[7];
@@ -356,19 +358,20 @@ public class CheckInPanel extends javax.swing.JPanel {
         jLabel21 = new javax.swing.JLabel();
         searchButton = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(239, 236, 227));
+        setBackground(new java.awt.Color(153, 204, 255));
         setPreferredSize(new java.awt.Dimension(1200, 700));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         checkIn.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         checkIn.setText("CUSTOMER CHECK-IN");
-        add(checkIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 381, -1));
+        add(checkIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 381, -1));
 
-        jPanel2.setBackground(new java.awt.Color(143, 171, 212));
+        jPanel2.setBackground(new java.awt.Color(75, 146, 219));
         jPanel2.setToolTipText("");
 
-        jLabel1.setBackground(new java.awt.Color(74, 112, 169));
+        jLabel1.setBackground(new java.awt.Color(0, 102, 204));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("CUSTOMER INFORMATION");
         jLabel1.setOpaque(true);
@@ -503,11 +506,13 @@ public class CheckInPanel extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 410, 570));
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 410, 570));
 
-        jPanel4.setBackground(new java.awt.Color(143, 171, 212));
+        jPanel4.setBackground(new java.awt.Color(75, 146, 219));
 
-        jLabel8.setBackground(new java.awt.Color(74, 112, 169));
+        jLabel8.setBackground(new java.awt.Color(0, 102, 204));
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("ROOM BOOKING INFORMATION");
         jLabel8.setOpaque(true);
@@ -611,12 +616,13 @@ public class CheckInPanel extends javax.swing.JPanel {
                 .addGap(0, 187, Short.MAX_VALUE))
         );
 
-        add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 140, 410, 570));
+        add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 210, 410, 570));
 
-        jPanel5.setBackground(new java.awt.Color(143, 171, 212));
+        jPanel5.setBackground(new java.awt.Color(75, 146, 219));
 
-        jLabel15.setBackground(new java.awt.Color(74, 112, 169));
+        jLabel15.setBackground(new java.awt.Color(0, 102, 204));
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("ADDITIONAL CHARGES & DISCOUNTS");
         jLabel15.setOpaque(true);
@@ -740,36 +746,38 @@ public class CheckInPanel extends javax.swing.JPanel {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(totalChargeField)
-                        .addComponent(childDisCheckBox)
-                        .addComponent(seniorDisCheckBox)
-                        .addComponent(jLabel18)
-                        .addComponent(foodServiceCheckBox)
-                        .addComponent(extraPillowCheckBox)
-                        .addComponent(extraComforterCheckBox)
-                        .addComponent(extraBedCheckBox)
-                        .addComponent(jLabel16)
-                        .addComponent(additionalPerFee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel5Layout.createSequentialGroup()
-                            .addComponent(jLabel19)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txtPromo, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(additionalPerFeeField, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(confirmCheckInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelReservationButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(delCheckInDataButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(UpdateCheckInButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(159, 159, 159))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(childDisCheckBox)
+                            .addComponent(seniorDisCheckBox)
+                            .addComponent(jLabel18)
+                            .addComponent(foodServiceCheckBox)
+                            .addComponent(extraPillowCheckBox)
+                            .addComponent(extraComforterCheckBox)
+                            .addComponent(extraBedCheckBox)
+                            .addComponent(jLabel16)
+                            .addComponent(additionalPerFee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel19)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtPromo, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(additionalPerFeeField, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
+                            .addComponent(totalChargeField)))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(cancelReservationButton)
+                                .addGap(18, 18, 18)
+                                .addComponent(delCheckInDataButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(confirmCheckInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(UpdateCheckInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -804,9 +812,9 @@ public class CheckInPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(totalChargeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(confirmCheckInButton)
-                    .addComponent(UpdateCheckInButton))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(UpdateCheckInButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(confirmCheckInButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelReservationButton)
@@ -814,14 +822,14 @@ public class CheckInPanel extends javax.swing.JPanel {
                 .addGap(0, 60, Short.MAX_VALUE))
         );
 
-        add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 140, 410, 570));
+        add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 210, 410, 570));
 
         searchField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchFieldActionPerformed(evt);
             }
         });
-        add(searchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 100, 330, -1));
+        add(searchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(1270, 40, 330, 40));
         add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 40, -1, -1));
 
         searchButton.setText("Search");
@@ -830,7 +838,7 @@ public class CheckInPanel extends javax.swing.JPanel {
                 searchButtonActionPerformed(evt);
             }
         });
-        add(searchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 100, -1, -1));
+        add(searchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1610, 40, -1, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void maleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maleButtonActionPerformed

@@ -7,6 +7,8 @@
  *
  * @author Mikoy
  */
+
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -26,7 +28,7 @@ public class Bill extends javax.swing.JFrame {
      * Load data from the text file and assign to buttons
      */
     private void loadReceiptData() {
-    String filePath = "C:\\Users\\Mikoy\\Documents\\Java Programs\\Bills information.txt";
+    String filePath = "D:\\Acer\\Documents\\NetBeansProjects\\HotelManagementSystem\\src\\Bills.txt";
 
     try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
         String line = br.readLine(); // Read the single line

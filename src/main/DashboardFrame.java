@@ -40,8 +40,10 @@ public class DashboardFrame extends javax.swing.JFrame {
         contentPanel.setLayout(new java.awt.BorderLayout());
         
         getContentPane().add(contentPanel, java.awt.BorderLayout.CENTER);
+        
 
     }
+    
     
     private void showForm(javax.swing.JPanel panel) {
         contentPanel.removeAll();
@@ -52,6 +54,7 @@ public class DashboardFrame extends javax.swing.JFrame {
         contentPanel.repaint();
         contentPanel.revalidate();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
