@@ -28,12 +28,18 @@ public class BillingPanel extends javax.swing.JPanel {
     }
     private void loadReceiptData() {
         String filePath = "D:\\Acer\\Documents\\NetBeansProjects\\HotelManagementSystem\\data\\bills.txt";
-        
+        String lastLine = "";
  
     try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-        String line = br.readLine(); // Read the single line
-        if (line != null && !line.isEmpty()) {
-            String[] values = line.split(","); // Split by comma
+        String line;
+        
+        while ((line = br.readLine()) != null) {
+            if(!line.trim().isEmpty()) {
+                lastLine = line;
+            }
+        }
+        if (lastLine != null && !lastLine.isEmpty()) {
+            String[] values = lastLine.split(","); // Split by comma
 
             // Array of buttons in the order you want to assign
             javax.swing.JButton[] buttons = {

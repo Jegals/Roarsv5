@@ -76,7 +76,7 @@ public class CheckInPanel extends javax.swing.JPanel {
                    if(status.equalsIgnoreCase("Available")) {
                        roomNumberComboBox.addItem(roomNum);
                        
-                       // add to RAM List (so the auto fill code works)
+                       
                        roomList.add(new String[]{roomNum, type, bed, price});
                    }
                 }
@@ -102,7 +102,7 @@ public class CheckInPanel extends javax.swing.JPanel {
             String line;
             
             while((line = reader.readLine()) != null) {
-                //split by comma (change to " " if your file uses spaces
+              
                 String[] parts = line.split(",");
                 
                 if(parts.length >= 6) {
@@ -249,7 +249,11 @@ public class CheckInPanel extends javax.swing.JPanel {
             while ((line = reader.readLine()) != null) {
                 
                 //split the line by comma
-                String[] parts = line.split(","); // why we do this
+                String[] parts = line.split(",");
+                
+                if (parts.length >= 23 && parts[22].trim().equalsIgnoreCase("CheckedOut")) {
+                    continue; 
+                }
                 
                 // we expect 5 parts; name, mobile, room, date, price
                 if(parts.length >= 21) {
@@ -280,7 +284,6 @@ public class CheckInPanel extends javax.swing.JPanel {
                     String promo = parts[19];
                     double total = Double.parseDouble(parts[20]); // total price
  
-                    // create object and add to Ram list
                     CheckInData guest = new CheckInData(name, mobile, email, gender, nationality, address, 
                                                         room, rType, bType, rPrice, date, persons, addFee,
                                                         exBed, exComf, exPillow, food, senior, child, promo, total);
@@ -865,6 +868,7 @@ public class CheckInPanel extends javax.swing.JPanel {
     private void confirmCheckInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmCheckInButtonActionPerformed
         // TODO add your handling code here:
         
+        loadData();
         //Get Basic Info
         String room = roomNumberComboBox.getSelectedItem().toString();
         
@@ -908,8 +912,8 @@ public class CheckInPanel extends javax.swing.JPanel {
                                                room, rType, bType, rPrice, date, persons, addFee, exBed,
                                                exComf, exPillow, food, senior, child, promo, total);
         
-        customerDatabase.add(newGuest); // saan ito mapupunta, it is a file ba?
-                       
+        customerDatabase.add(newGuest);
+        
         saveData();
         
         updateRoomStatus(room); // refresh the dropdown so this room dissapears from the "
@@ -1184,6 +1188,7 @@ public class CheckInPanel extends javax.swing.JPanel {
     private void UpdateCheckInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateCheckInButtonActionPerformed
         // TODO add your handling code here:
         
+        loadData();
         // get the name form the text box to find the person
         String targetName = fullNameField.getText();
         
@@ -1274,6 +1279,8 @@ public class CheckInPanel extends javax.swing.JPanel {
 
     private void delCheckInDataButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delCheckInDataButtonActionPerformed
         // TODO add your handling code here:
+        
+        loadData();
         
         String currentName = fullNameField.getText();
         

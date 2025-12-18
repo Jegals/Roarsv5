@@ -10,7 +10,6 @@ package reports;
  */
 
 import java.io.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,41 +20,40 @@ public class ReportPanel extends javax.swing.JPanel {
      */
     public ReportPanel() {
         initComponents();
-        loadRevenueData();
+        loadRevenueData();//loads all report agad agad
     }
     
     private void loadRevenueData() {
-    ReportData dataLogic = new ReportData();
+    ReportData dataLogic = new ReportData();//instance
     
-    // Pass your actual labels
+    // pass yung label sa Report Data
     dataLogic.updateRevenueLabels(lblDailySales, lblMonthlySales, lblTotalCheckouts);
-    updateCheckInCount();
+    updateCheckInCount();//count ilang customer nagcheckin tapos display sa lblTotalCheckIn
 
-    // Fix the error by using the full path if import is missing
-    //javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) jTable1.getModel();
-    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-    model.setRowCount(0); 
+    
+    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();//access table
+    model.setRowCount(0); //clear yung previous records
 
-    ArrayList<String[]> allBills = dataLogic.getAllBills();
+    ArrayList<String[]> allBills = dataLogic.getAllBills();//retrieve yung laman ng bills.txt
     for (String[] b : allBills) {
         if (b.length >= 16) {
             Object[] row = {
-                b[2],                   // Keith (Index 2)
-                b[5],                   // 101 (Index 5)
-                b[9] + " to " + b[10],  // Dates (Index 9 & 10)
-                "₱" + b[15]             // 1124.0 (Index 15)
+                b[2],                   // customer name
+                b[5],                   // room no.
+                b[9] + " to " + b[10],  // check in check out
+                "₱" + b[15]             // grand total
             };
             model.addRow(row);
         }
     }
 }
     
-    private void updateCheckInCount() {
+    private void updateCheckInCount() {//cpunt yung total checkins from record.txt
         int count = 0;
         try (BufferedReader br = new BufferedReader(new FileReader("data/records.txt"))) {
-            while (br.readLine() != null) { count++; }
+            while (br.readLine() != null) { count++; }//everyline isang checkin tapos count ng total
         } catch (IOException e) { }
-        lblTotalCheckIn.setText(String.valueOf(count));
+        lblTotalCheckIn.setText(String.valueOf(count));//display
     }
     
 

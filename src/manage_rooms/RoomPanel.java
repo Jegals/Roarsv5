@@ -86,7 +86,7 @@ tableInfo.setRowSorter(sorter);
     
           if (column == 5) {//roomnum cannot be modified because the systemn need to avoid duplication of room number
             JOptionPane.showMessageDialog(RoomPanel.this, 
-                "Room Number cannot be modified!");
+                "Room Status cannot be modified!");
             loadTableData(); // Reload original data
             return;
         }

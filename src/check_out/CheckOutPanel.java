@@ -622,14 +622,14 @@ public class CheckOutPanel extends javax.swing.JPanel {
             txtPrice.setText(String.valueOf(customer.price));
             txtCheckInDate.setText(customer.checkIn);
 
-            // 2. Load ALL Fees from File
+            //  Load ALL Fees from File
             addPersonFees.setText(String.valueOf(customer.extraPersonFee));
             addRequest.setText(String.valueOf(customer.extraRequestFee));
            
             
             lessDisc.setText(String.valueOf(customer.discount)); // Loaded from File
 
-            // 3. Calculate Stay Duration
+            // Calculate Stay Duration
             LocalDate today = LocalDate.now();
             checkOutDate.setText(today.toString());
             long days = 1;
@@ -641,7 +641,7 @@ public class CheckOutPanel extends javax.swing.JPanel {
             txtDays.setText(String.valueOf(days));
             totalStay.setText(String.valueOf(days));
 
-            // 4. Calculate Final Total
+            // Calculate Final Total
             double roomTotal = customer.price * days;
             roomCharges.setText("" + roomTotal);
 
@@ -776,6 +776,7 @@ public class CheckOutPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         calculateTotal();
     }//GEN-LAST:event_lessDiscKeyReleased
+    //method for calculation
     private void calculateTotal() {
     try {
         double baseRoomCharge = Double.parseDouble(roomCharges.getText().isEmpty() ? "0" : roomCharges.getText());

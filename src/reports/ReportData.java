@@ -1,15 +1,15 @@
 package reports;
 
 import java.io.*;
-import java.time.LocalDate;
-import java.util.ArrayList;
+import java.time.LocalDate;//for dates para macompare dates
+import java.util.ArrayList;//store all bill
 
 public class ReportData {
     // Exact path to your file
     private final String BILL_FILE = "D:\\Acer\\Documents\\NetBeansProjects\\HotelManagementSystem\\data\\bills.txt"; 
 
-    public ArrayList<String[]> getAllBills() {
-        ArrayList<String[]> list = new ArrayList<>();
+    public ArrayList<String[]> getAllBills() {//read yung datas
+        ArrayList<String[]> list = new ArrayList<>();//empty list to store yung records
         File file = new File(BILL_FILE);
         
         if (!file.exists()) {
@@ -19,15 +19,15 @@ public class ReportData {
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
-            while ((line = br.readLine()) != null) {
-                line = line.trim();
+            while ((line = br.readLine()) != null) {//read each line
+                line = line.trim();//remove yung spaces
                 if (!line.isEmpty()) {
-                    // Split and trim each individual value to remove hidden spaces
+                    // Split and trim each individual value to remove spaces
                     String[] data = line.split(",");
                     for (int i = 0; i < data.length; i++) {
-                        data[i] = data[i].trim();
+                        data[i] = data[i].trim();//remove yung apces
                     }
-                    list.add(data);
+                    list.add(data);//store yung bill sa list
                 }
             }
         } catch (IOException e) {
@@ -40,12 +40,12 @@ public class ReportData {
         double monthlyTotal = 0;
         int checkoutsToday = 0;
         
-        String today = LocalDate.now().toString(); // "2025-12-18"
-        String thisMonth = today.substring(0, 7);   // "2025-12"
+        String today = LocalDate.now().toString(); //compare yung bill dates
+        String thisMonth = today.substring(0, 7);   
 
-        ArrayList<String[]> bills = getAllBills();
+        ArrayList<String[]> bills = getAllBills(); //fetch lahat ng records
 
-        for (String[] d : bills) {
+        for (String[] d : bills) {//process one by one
             // Your bills.txt: Index 10 is Date, Index 15 is Grand Total
             if (d.length >= 16) { 
                 try {

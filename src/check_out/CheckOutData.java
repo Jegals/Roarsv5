@@ -6,7 +6,6 @@ package check_out;
 
 /**
  *
- * @author Elen Jean Lolo
  */
 
 import java.io.*;
@@ -21,7 +20,6 @@ public class CheckOutData {
     private static final String ROOMS_FILE    = "data/rooms.txt";
     private static final String BILL_FILE     = "D:\\Acer\\Documents\\NetBeansProjects\\HotelManagementSystem\\data\\bills.txt";
 
-    // ================= CUSTOMER MODEL =================
    public static class Customer {
     public String roomNumber, name, mobile, email, roomType, bedType, checkIn, status;
     
@@ -52,23 +50,31 @@ public class CheckOutData {
     }
 }
            
-    // ================= LOAD CUSTOMERS =================
 public java.util.ArrayList<Customer> loadCustomers() {
         java.util.ArrayList<Customer> list = new java.util.ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(CUSTOMER_FILE))) {
             String line;
             while ((line = br.readLine()) != null) {
                 if (line.trim().isEmpty()) continue;
-                String[] d = line.split(",");
+                String[] d = line.split(",", -1);
                 
-                // YOUR FILE HAS EXACTLY 23 COLUMNS
+                // 23 COLUMNS
                 if (d.length >= 23) {
-                    
-                    // --- 1. BUILD REQUEST TEXT (Indices 13, 14, 15, 16) ---
+                    try {
+                        
+                        double roomPrice = 0.0;
+                        if(d[9].isEmpty() == false) {
+                            roomPrice = Double.parseDouble(d[9]);
+                        }
+                        
+                        double extraPerson = 0.0;
+                        if(d[12].isEmpty() == false) {
+                            extraPerson = Double.parseDouble(d[12]);
+                        }
+                        
                     double reqFee = 0;
                     
-                    double roomPrice = Double.parseDouble(d[9]);
-                    double extraPerson = Double.parseDouble(d[12]);
+                    
 
                     if (Boolean.parseBoolean(d[13])) { reqFee += 500; } // extra bed
                     if (Boolean.parseBoolean(d[14])) { reqFee += 200; } // comforter
@@ -83,11 +89,11 @@ public java.util.ArrayList<Customer> loadCustomers() {
                     boolean isChild = Boolean.parseBoolean(d[18]);
                     String promo = d[19];
                     
-                    // Apply Logic: Senior 20%
+                    //  Senior 20%
                     if (isSenior) {
                         runningTotal = runningTotal * 0.80;
                     }
-                    // Apply Logic: Child 10%
+                    // Child 10%
                     if (isChild) {
                         runningTotal = runningTotal * 0.90;
                     }
@@ -100,7 +106,7 @@ public java.util.ArrayList<Customer> loadCustomers() {
                     double calculatedDiscount = grossTotal - runningTotal;
                     if (calculatedDiscount < 0) calculatedDiscount = 0;
                     
-                    // --- 2. CREATE CUSTOMER ---
+                   
                     list.add(new Customer(
                         d[0].trim(),  // Room Number (Index 0)
                         d[1].trim(),  // Name
@@ -116,8 +122,11 @@ public java.util.ArrayList<Customer> loadCustomers() {
                         calculatedDiscount, // Discount (Index 20)
                         isSenior, isChild, promo
                     ));
+                } catch (Exception e) {
+                    System.out.println("Skiiping bad line: " + line);
                 }
             }
+        }      
         } catch (Exception e) {
             System.err.println("Error loading customers: " + e.getMessage());
         }
@@ -127,41 +136,42 @@ public java.util.ArrayList<Customer> loadCustomers() {
 
     
     public Customer searchCustomerByRoom(String roomNumber) {
-        for(Customer c : loadCustomers()) {
-            // check room number and status
-            if(c.roomNumber.equalsIgnoreCase(roomNumber) && c.status.equalsIgnoreCase("CheckedIn")) {
-                return c;
-            }
+        
+        ArrayList<Customer> customerList = loadCustomers();
+
+        
+        for (int i = 0; i < customerList.size(); i++) {
+        
+        Customer c = customerList.get(i); 
+
+        
+        if (c.roomNumber.equalsIgnoreCase(roomNumber) && c.status.equalsIgnoreCase("CheckedIn")) {
+            return c; 
         }
-        return null;
+    }
+    return null;
     }
 
-    // ================= CHECKOUT LOGIC =================
-    // Added "double total" at the end of the parameters
 public boolean checkoutCustomer(String roomNumber, double extraPerson, double extraRequest, double discount, double total) {
     ArrayList<String> updatedLines = new ArrayList<>();
     boolean success = false;
+    String today = LocalDate.now().toString();
 
     try (BufferedReader br = new BufferedReader(new FileReader(CUSTOMER_FILE))) {
         String line;
         while ((line = br.readLine()) != null) {
             String[] d = line.split(",");
             
-            if (d.length >= 22 && d[0].trim().equals(roomNumber.trim()) && d[22].trim().equals("CheckedIn")) {
+            if (d.length >= 23 && d[0].trim().equals(roomNumber.trim()) && d[22].trim().equals("CheckedIn")) {
                 
-                // We don't need to recalculate 'total' here because it's passed from JFrame
+                
                 long days = ChronoUnit.DAYS.between(LocalDate.parse(d[10]), LocalDate.now());
                 if (days <= 0) days = 1;
                 double roomCharge = Double.parseDouble(d[9]) * days;
 
-               
-               
-
-                // 3. Update Status to CheckedOut
-                d[21] = LocalDate.now().toString();// checkout date
+                d[21] = today;// checkout date
                 d[22] = "CheckedOut"; // status
                 
-                 // 2. Save to History and Bills
                 saveHistory(d);              
                 saveBill(d, days, roomCharge, extraPerson, extraRequest, discount, total);
                 
@@ -204,11 +214,6 @@ public boolean checkoutCustomer(String roomNumber, double extraPerson, double ex
                           disc + "," +                  // 13: Discount Amount
                           total + "," +          // 4: Grand Total
                           "Cash";
-                        
-                          
-                          
-                          
-
             pw.println(line);
             
         } catch (Exception e) { 
