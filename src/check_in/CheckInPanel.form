@@ -88,7 +88,7 @@
                                   <Component id="emailAddressField" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="96" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -292,7 +292,7 @@
                   <Component id="numPersonStay" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="numPersonStaySpinner" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="187" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -378,7 +378,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="checkInDate">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Check-In Date (YY-MM-DD)"/>
+            <Property name="text" type="java.lang.String" value="Check-In Date (YYYY-MM-DD)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="checkInDateField">
@@ -451,7 +451,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="28" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -498,7 +498,7 @@
                       <Component id="cancelReservationButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="delCheckInDataButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="0" pref="60" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -665,7 +665,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="1270" y="40" width="330" height="40"/>
+          <AbsoluteConstraints x="1200" y="30" width="330" height="40"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -685,7 +685,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="1610" y="40" width="-1" height="40"/>
+          <AbsoluteConstraints x="1540" y="30" width="-1" height="40"/>
         </Constraint>
       </Constraints>
     </Component>

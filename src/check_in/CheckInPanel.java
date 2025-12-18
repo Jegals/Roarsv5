@@ -69,7 +69,7 @@ public class CheckInPanel extends javax.swing.JPanel {
                    String roomNum = parts[0];
                    String type = parts[1];
                    String bed = parts[2];
-                   // parts[3] maximum people - (hindi siya autofill)
+                   //parts[3] maximum people - (hindi siya autofill)
                    String price = parts[4];
                    String status = parts[5].trim(); // remove spaces
                    
@@ -471,7 +471,7 @@ public class CheckInPanel extends javax.swing.JPanel {
                                 .addComponent(fullNameField, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(mobileNumberField, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(emailAddressField, javax.swing.GroupLayout.Alignment.LEADING)))
-                        .addContainerGap(96, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -553,7 +553,7 @@ public class CheckInPanel extends javax.swing.JPanel {
             }
         });
 
-        checkInDate.setText("Check-In Date (YY-MM-DD)");
+        checkInDate.setText("Check-In Date (YYYY-MM-DD)");
 
         checkInDateField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -613,7 +613,7 @@ public class CheckInPanel extends javax.swing.JPanel {
                 .addComponent(numPersonStay)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(numPersonStaySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 187, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 210, 410, 570));
@@ -777,7 +777,7 @@ public class CheckInPanel extends javax.swing.JPanel {
                                 .addComponent(confirmCheckInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(UpdateCheckInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -819,7 +819,7 @@ public class CheckInPanel extends javax.swing.JPanel {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelReservationButton)
                     .addComponent(delCheckInDataButton))
-                .addGap(0, 60, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 210, 410, 570));
@@ -829,7 +829,7 @@ public class CheckInPanel extends javax.swing.JPanel {
                 searchFieldActionPerformed(evt);
             }
         });
-        add(searchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(1270, 40, 330, 40));
+        add(searchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 30, 330, 40));
         add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 40, -1, -1));
 
         searchButton.setText("Search");
@@ -838,7 +838,7 @@ public class CheckInPanel extends javax.swing.JPanel {
                 searchButtonActionPerformed(evt);
             }
         });
-        add(searchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1610, 40, -1, 40));
+        add(searchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1540, 30, -1, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void maleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maleButtonActionPerformed
