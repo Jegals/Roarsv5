@@ -25,10 +25,10 @@ import javax.swing.table.TableRowSorter;
 import javax.swing.table.TableModel ;
 import javax.swing.RowFilter;
 
-public class RoomPanel extends javax.swing.JPanel {
+public class RoomPanel_luma extends javax.swing.JPanel {
 
     /**
-     * Creates new form RoomPanel
+     * Creates new form RoomPanel_luma
      */
     
           Scanner input= new Scanner(System.in);
@@ -37,7 +37,7 @@ public class RoomPanel extends javax.swing.JPanel {
        private JMenuItem delete = new JMenuItem("delete");
        
        
-    public RoomPanel() {
+    public RoomPanel_luma() {
         initComponents();
         
         
@@ -45,57 +45,55 @@ public class RoomPanel extends javax.swing.JPanel {
           loadTableData();
         //    tableInfo.setAutoCreateRowSorter(true);
        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>((DefaultTableModel) tableInfo.getModel());
-tableInfo.setRowSorter(sorter);// it auto the sorting of the table by column
+tableInfo.setRowSorter(sorter);
        //   option.add("edit");
      //      option.add("delete");
-          option.add(edit);//shows the option when clicked
+          option.add(edit);
            option.add(delete);
            
            
            
-          delete.addActionListener(e -> {//this one listens or react when the row is double clicked
-    int rowline = tableInfo.getSelectedRow();  //read where is the row index is selectedd
+          delete.addActionListener(e -> {
+    int rowline = tableInfo.getSelectedRow();
     if (rowline != -1) {
 
         DefaultTableModel model = (DefaultTableModel) tableInfo.getModel();
 
         // Example: delete based on Room Number (first column)
-        String value = model.getValueAt(rowline, 0).toString();//
+        String value = model.getValueAt(rowline, 0).toString();
 
         // Remove from JTable
-         deleteRecordFromFile(value);
-      model.removeRow(rowline);
+        model.removeRow(rowline);
 
         // Remove from file
-       // deleteRecordFromFile(value);
-         //   delete.removeRow(rowline);   
+        deleteRecordFromFile(value);
 
         JOptionPane.showMessageDialog(null, "Record deleted successfully.");
     }} );
         
   
-           tableInfo.getModel().addTableModelListener(e -> {//detect also the when the table is being editd
+           tableInfo.getModel().addTableModelListener(e -> {
         if (e.getType() == javax.swing.event.TableModelEvent.UPDATE) {
         int row = e.getFirstRow();
         int column = e.getColumn();
         
         if (column == 0) {//roomnum cannot be modified because the systemn need to avoid duplication of room number
-            JOptionPane.showMessageDialog(RoomPanel.this, 
+            JOptionPane.showMessageDialog(RoomPanel_luma.this, 
                 "Room Number cannot be modified!");
             loadTableData(); // Reload original data
             return;
         }
     
           if (column == 5) {//roomnum cannot be modified because the systemn need to avoid duplication of room number
-            JOptionPane.showMessageDialog(RoomPanel.this, 
-                "Room Number cannot be modified!");
+            JOptionPane.showMessageDialog(RoomPanel_luma.this, 
+                "Room Status cannot be modified!");
             loadTableData(); // Reload original data
             return;
         }
     
 
         DefaultTableModel model = (DefaultTableModel) tableInfo.getModel();
-        String updatedValue = model.getValueAt(row, column).toString();// hold the updated value that was edited 
+        String updatedValue = model.getValueAt(row, column).toString();
         String roomNumber = model.getValueAt(row, 0).toString(); // Use Room Number as ID
 
         // Update the file
@@ -105,7 +103,7 @@ tableInfo.setRowSorter(sorter);// it auto the sorting of the table by column
 
         // Show success message
         if(filled){
-        JOptionPane.showMessageDialog(RoomPanel.this, "Record updated successfully!");
+        JOptionPane.showMessageDialog(RoomPanel_luma.this, "Record updated successfully!");
     }}
 });
     }
@@ -239,11 +237,11 @@ tableInfo.setRowSorter(sorter);// it auto the sorting of the table by column
 
             // Get the current model from tableInfo (not showTable)
             TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>((DefaultTableModel) tableInfo.getModel());
-            tableInfo.setRowSorter(sorter);///sort automaticall the table 
+            tableInfo.setRowSorter(sorter);
 
             if (!searchText.isEmpty()) {
                 // Search in ALL columns (0-5)
-                sorter.setRowFilter(RowFilter.regexFilter("(?i)"+ searchText));// if the searchbox is not empty it auto search fomr all column// the setRowFilter show the matched and hide the un,atched  
+                sorter.setRowFilter(RowFilter.regexFilter("(?i)"+ searchText));
                 // (?i) makes it case-insensitive
 
                 if(tableInfo.getRowCount()==0){
@@ -256,14 +254,14 @@ tableInfo.setRowSorter(sorter);// it auto the sorting of the table by column
     }//GEN-LAST:event_searchKeyReleased
     
         public int linearSearch(String keyword) {
-    DefaultTableModel model = (DefaultTableModel) tableInfo.getModel();// this liine load or the calling to get the data 
+    DefaultTableModel model = (DefaultTableModel) tableInfo.getModel();
 
-    for (int row = 0; row < model.getRowCount(); row++) {  //this one search though looping each row
-        for (int col = 0; col < model.getColumnCount(); col++) {// and row it also loop through each column
+    for (int row = 0; row < model.getRowCount(); row++) {
+        for (int col = 0; col < model.getColumnCount(); col++) {
 
-            Object value = model.getValueAt(row, col);// this one sya ang kukuha ng info in both row andd column
-            if (value != null && value.toString().toLowerCase()// for the searching to match it it convert to lowercasse
-                    .contains(keyword.toLowerCase())) {// uses contain if the value and keyword match 
+            Object value = model.getValueAt(row, col);
+            if (value != null && value.toString().toLowerCase()
+                    .contains(keyword.toLowerCase())) {
 
                 return row; // FOUND → return row index
             }
@@ -284,13 +282,13 @@ tableInfo.setRowSorter(sorter);// it auto the sorting of the table by column
 
     private void addroombtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addroombtnActionPerformed
         // TODO add your handling code here:                                        
-  
+    // 1. Create a generic Window (JFrame) to hold your panel
     javax.swing.JFrame window = new javax.swing.JFrame("Add New Room");
     
-
+    // 2. Create your "Add Room" Panel
     manage_rooms.RoomPanel2 panel = new manage_rooms.RoomPanel2(this);
     
-   
+    // 3. Put the Panel inside the Window
     window.add(panel);
     window.pack(); // Size the window to fit the panel
     window.setLocationRelativeTo(null); // Center the window
@@ -332,11 +330,6 @@ tableInfo.setRowSorter(sorter);// it auto the sorting of the table by column
     }
 
     
-    
-    
-    
-    
-    
     private void deleteRecordFromFile(String searchvalue) {
             File inputFile = new File("data/rooms.txt");
     File tempFile = new File("temp.txt");
@@ -349,8 +342,8 @@ tableInfo.setRowSorter(sorter);// it auto the sorting of the table by column
         boolean found = false;
         while ((line = reader.readLine()) != null) {
             String[] data = line.split(",");
-            //Object searchValue = null;
-            // Example: data[0] = Room Number
+           // Object searchValue = null;
+           // Example: data[0] = Room Number
             // Change this based on your file structure
             if (data[0].equals(searchvalue)) {
                 found = true;

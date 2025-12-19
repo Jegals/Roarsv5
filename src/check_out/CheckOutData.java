@@ -117,7 +117,7 @@ public java.util.ArrayList<Customer> loadCustomers() {
                         Double.parseDouble(d[9]),  // Price
                         d[10].trim(), // Check-In Date
                         d[22].trim(), // Status (Index 22 - The Last One)
-                        Double.parseDouble(d[12]), // Extra Person Fee (Index 12)
+                        extraPerson, // Extra Person Fee (Index 12)
                         reqFee,       // Calculated Request Fee
                         calculatedDiscount, // Discount (Index 20)
                         isSenior, isChild, promo
@@ -164,8 +164,13 @@ public boolean checkoutCustomer(String roomNumber, double extraPerson, double ex
             
             if (d.length >= 23 && d[0].trim().equals(roomNumber.trim()) && d[22].trim().equals("CheckedIn")) {
                 
+                java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("yyyy-M-d");
                 
-                long days = ChronoUnit.DAYS.between(LocalDate.parse(d[10]), LocalDate.now());
+                LocalDate checkInDate = LocalDate.parse(d[10].trim(), formatter);
+                
+                long days = ChronoUnit.DAYS.between(checkInDate, LocalDate.now());
+                
+                
                 if (days <= 0) days = 1;
                 double roomCharge = Double.parseDouble(d[9]) * days;
 

@@ -179,7 +179,7 @@ public class CheckInPanel extends javax.swing.JPanel {
                 isPromoMessageShown = false;
             }
             
-            totalChargeField.setText(String.valueOf(total));
+            totalChargeField.setText(String.format("%.2f", total));
             
         } catch (Exception e) {
             // ignore errors while typing
@@ -918,7 +918,7 @@ public class CheckInPanel extends javax.swing.JPanel {
         
         saveData();
         
-        updateRoomStatus(room); // refresh the dropdown so this room dissapears from the "
+        updateRoomStatus(room); // refresh the dropdown so this room dissapears
         
         javax. swing.JOptionPane.showMessageDialog(this, "Check-In Saved Successfuly and Room Occupied");
     }//GEN-LAST:event_confirmCheckInButtonActionPerformed
