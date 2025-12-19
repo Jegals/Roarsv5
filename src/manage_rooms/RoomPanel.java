@@ -342,10 +342,10 @@ tableInfo.setRowSorter(sorter);
         boolean found = false;
         while ((line = reader.readLine()) != null) {
             String[] data = line.split(",");
-            Object searchValue = null;
-            // Example: data[0] = Room Number
+           // Object searchValue = null;
+           // Example: data[0] = Room Number
             // Change this based on your file structure
-            if (data[0].equals(searchValue)) {
+            if (data[0].equals(searchvalue)) {
                 found = true;
                 continue;   // Skip writing (delete)
             }
