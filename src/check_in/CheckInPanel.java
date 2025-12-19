@@ -167,10 +167,11 @@ public class CheckInPanel extends javax.swing.JPanel {
             // promo code
             String code = txtPromo.getText().trim();
             
-            if(txtPromo.getText().equals("PROMO100")) {
+            if(code.equals("PROMO100")) {
                 total -= 100; // deduct 100 pesos
                 
             if(!isPromoMessageShown) {
+                
                 JOptionPane.showMessageDialog(null, "Promo Applied: -100");
                 isPromoMessageShown = true;
             }
@@ -715,6 +716,7 @@ public class CheckInPanel extends javax.swing.JPanel {
             }
         });
 
+        totalChargeField.setEditable(false);
         totalChargeField.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         totalChargeField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
