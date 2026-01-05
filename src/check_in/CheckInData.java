@@ -16,8 +16,9 @@ public class CheckInData {
     // Basic Info
     private String name;
     private String mobile;
+    private String birthday;
     private String email;
-    private String gender;
+    private String sex;
     private String nationality;
     private String address;
     
@@ -34,17 +35,20 @@ public class CheckInData {
     private boolean extraComforter;
     private boolean extraPillow;
     private boolean foodService;
+    private int bedQty, comfQty, pillowQty, foodQty;
     private boolean seniorDiscount;
+    private boolean pwdDiscount;
     private boolean childDiscount;
     private String promoCode;
     private double totalCharge;
     
-    public CheckInData(String name, String mobile, String email, String gender, String nationality, String address,
+    public CheckInData(String name, String mobile, String birthday, String email, String sex, String nationality, String address,
                        String roomNumber, String roomType, String bedType, double roomPrice, String checkInDate, int persons,
-                       String additionalFee, boolean extraBed, boolean extraComforter, boolean extraPillow, boolean foodService,
-                       boolean seniorDiscount, boolean childDiscount, String promoCode, double totalCharge) {
+                       String additionalFee, boolean extraBed, boolean extraComforter, boolean extraPillow, boolean foodService, int bedQty, int comfQty, int pillowQty, int foodQty, 
+                       boolean seniorDiscount, boolean pwdDiscount, boolean childDiscount, String promoCode, double totalCharge) {
         this.name = name;
         this.mobile = mobile;
+        this.birthday = birthday;
         this.roomNumber = roomNumber;
         this.roomType = roomType;
         this.bedType = bedType;
@@ -57,11 +61,16 @@ public class CheckInData {
         this.extraComforter = extraComforter;
         this.extraPillow = extraPillow;
         this.foodService = foodService;
+        this.bedQty = bedQty;
+        this.comfQty = comfQty;
+        this.pillowQty = pillowQty;
+        this.foodQty = foodQty;
         this.seniorDiscount = seniorDiscount;
+        this.pwdDiscount = pwdDiscount;
         this.childDiscount = childDiscount;
         
         this.email = email;
-        this.gender = gender;
+        this.sex = sex;
         this.nationality = nationality;
         this.address = address;
         this.additionalFee = additionalFee;
@@ -75,6 +84,9 @@ public class CheckInData {
     }
     public String getMobile() {
         return mobile;
+    }
+    public String getBirthday() {
+        return birthday;
     }
     public String getRoomNumber() {
         return roomNumber;
@@ -109,8 +121,23 @@ public class CheckInData {
     public boolean isFoodService() {
         return foodService;
     }
+    public int getBedQty() {
+        return bedQty;
+    }
+    public int getComfQty() {
+        return comfQty;
+    } 
+    public int getPillowQty() {
+        return pillowQty;
+    }
+    public int getFoodQty() {
+        return foodQty;
+    }
     public boolean isSeniorDiscount() {
         return seniorDiscount;
+    }
+    public boolean isPwdDiscount() {
+        return pwdDiscount;
     }
     public boolean isChildDiscount() {
         return childDiscount;
@@ -118,8 +145,8 @@ public class CheckInData {
     public String getEmail() {
         return email;
     }
-    public String getGender() {
-        return gender;
+    public String getSex() {
+        return sex;
     }
     public String getNationality() {
         return nationality;
@@ -141,6 +168,9 @@ public class CheckInData {
     }
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+    public void setBirthday (String birthday) {
+        this.birthday = birthday;
     }
     public void setRoomNumber(String roomNumber) {
        this.roomNumber = roomNumber;
@@ -166,8 +196,8 @@ public class CheckInData {
     public void setEmail(String e) {
         this.email = e;
     }
-    public void setGender(String g) {
-        this.gender = g;
+    public void setSex(String s) {
+        this.sex = s;
     }
     public void setNationality(String n) {
         this.nationality = n;
@@ -193,8 +223,23 @@ public class CheckInData {
     public void setFoodService(boolean b) {
         this.foodService = b;
     }
+    public void setBedQty (int bedQty) {
+        this.bedQty = bedQty;
+    }
+    public void setComfQty (int comfQty) {
+        this.comfQty = comfQty;
+    }
+    public void setPillowQty (int pillowQty) {
+        this.pillowQty = pillowQty;
+    }
+    public void setFoodQty (int foodQty) {
+        this.foodQty = foodQty;
+    }
     public void setSeniorDiscount(boolean b) {
         this.seniorDiscount = b;
+    }
+    public void setPwdDiscount(boolean p) {
+        this.pwdDiscount = p;
     }
     public void setChildDiscount(boolean b) {
         this.childDiscount = b;

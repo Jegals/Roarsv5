@@ -1,6 +1,6 @@
-101,Standard,Single,1,1500,Occupied
+101,Standard,Single,1,1500,Available
 102,Standard,Single,1,1500,Occupied
-103,Standard,Single,1,1500,Occupied
+103,Standard,Single,1,1500,Available
 104,Standard,Single,1,1500,Available
 105,Standard,Single,1,1500,Available
 201,Deluxe,Double,2,2200,Available

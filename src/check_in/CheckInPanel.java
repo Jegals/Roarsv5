@@ -148,10 +148,30 @@ public class CheckInPanel extends javax.swing.JPanel {
             double total = Double.parseDouble(priceText);
             
             // add extra charges
-            if(extraBedCheckBox.isSelected()) total += 500;
-            if(extraComforterCheckBox.isSelected()) total += 200;
-            if(extraPillowCheckBox.isSelected()) total += 100;
-            if(foodServiceCheckBox.isSelected()) total += 300;
+            if(extraBedCheckBox.isSelected()) {
+                int qty = (Integer) extraBedQuantity.getValue();
+                if(qty < 1) qty = 1;
+                total += (500 * qty);
+            }
+            
+            if(extraComforterCheckBox.isSelected()) {
+                int qty = (Integer) extraComfortQuantity.getValue();
+                if(qty < 1) qty = 1;
+                total += (200 * qty);
+            }
+            
+            if(extraPillowCheckBox.isSelected()) {
+                int qty = (Integer) extraPillowQuantity.getValue();
+                if(qty < 1) qty = 1;
+                total += (100 * qty);
+            }
+            
+            if(foodServiceCheckBox.isSelected()) {
+                int qty = (Integer) foodSerQuantity.getValue();
+                if(qty < 1) qty = 1;
+                total += (300 * qty);
+            }
+            
             
            // Add the Additional Person Fee from the text box
            String addFeeText = additionalPerFeeField.getText();
@@ -162,6 +182,7 @@ public class CheckInPanel extends javax.swing.JPanel {
             
             //discounts
             if(seniorDisCheckBox.isSelected()) total = total * 0.80; // 20% off
+            if(pwdDisCheckBox1.isSelected()) total = total * 0.80;
             if(childDisCheckBox.isSelected()) total = total * 0.90; // 10% off
             
             // promo code
@@ -199,8 +220,9 @@ public class CheckInPanel extends javax.swing.JPanel {
                 String line = guest.getRoomNumber() + "," +
                               guest.getName() + "," +
                               guest.getMobile() + "," +
+                              guest.getBirthday() + "," +
                               guest.getEmail() + "," +
-                              guest.getGender() + "," +
+                              guest.getSex() + "," +
                               guest.getNationality() + "," +
                               guest.getAddress() + "," +
                         
@@ -218,7 +240,12 @@ public class CheckInPanel extends javax.swing.JPanel {
                               guest.isExtraComforter() + "," +
                               guest.isExtraPillow() + "," +
                               guest.isFoodService() + "," +
+                              guest.getBedQty() + "," +
+                              guest.getComfQty() + "," +
+                              guest.getPillowQty() + "," +
+                              guest.getFoodQty() + "," +
                               guest.isSeniorDiscount() + "," +
+                              guest.isPwdDiscount() + "," +
                               guest.isChildDiscount() + "," +
                               guest.getPromoCode() + "," +
                               // New Strings
@@ -257,37 +284,43 @@ public class CheckInPanel extends javax.swing.JPanel {
                 }
                 
                 // we expect 5 parts; name, mobile, room, date, price
-                if(parts.length >= 21) {
+                if(parts.length >= 26) {
                     
                     String room = parts[0];
                     
                     String name = parts[1];
                     String mobile = parts[2];
-                    String email = parts[3];
-                    String gender = parts[4];
-                    String nationality = parts[5];
-                    String address = parts[6];
+                    String birthday = parts[3];
+                    String email = parts[4];
+                    String sex = parts[5];
+                    String nationality = parts[6];
+                    String address = parts[7];
                                         
                     
-                    String rType = parts[7];
-                    String bType = parts[8];
-                    double rPrice = Double.parseDouble(parts[9]);
-                    String date = parts[10];
-                    int persons = Integer.parseInt(parts[11]);
-                    String addFee = parts[12];
+                    String rType = parts[8];
+                    String bType = parts[9];
+                    double rPrice = Double.parseDouble(parts[10]);
+                    String date = parts[11];
+                    int persons = Integer.parseInt(parts[12]);
+                    String addFee = parts[13];
                     
-                    boolean exBed = Boolean.parseBoolean(parts[13]);
-                    boolean exComf = Boolean.parseBoolean(parts[14]);
-                    boolean exPillow = Boolean.parseBoolean(parts[15]);
-                    boolean food = Boolean.parseBoolean(parts[16]);
-                    boolean senior = Boolean.parseBoolean(parts[17]);
-                    boolean child = Boolean.parseBoolean(parts[18]);
-                    String promo = parts[19];
-                    double total = Double.parseDouble(parts[20]); // total price
+                    boolean exBed = Boolean.parseBoolean(parts[14]);
+                    boolean exComf = Boolean.parseBoolean(parts[15]);
+                    boolean exPillow = Boolean.parseBoolean(parts[16]);
+                    boolean food = Boolean.parseBoolean(parts[17]);
+                    int qBed = Integer.parseInt(parts[18]);
+                    int qComf = Integer.parseInt(parts[19]);
+                    int qPillow = Integer.parseInt(parts[20]);
+                    int qFood = Integer.parseInt(parts[21]);
+                    boolean senior = Boolean.parseBoolean(parts[22]);
+                    boolean pwd = Boolean.parseBoolean(parts[23]);
+                    boolean child = Boolean.parseBoolean(parts[24]);
+                    String promo = parts[25];
+                    double total = Double.parseDouble(parts[26]); // total price
  
-                    CheckInData guest = new CheckInData(name, mobile, email, gender, nationality, address, 
+                    CheckInData guest = new CheckInData(name, mobile, birthday, email, sex, nationality, address, 
                                                         room, rType, bType, rPrice, date, persons, addFee,
-                                                        exBed, exComf, exPillow, food, senior, child, promo, total);
+                                                        exBed, exComf, exPillow, food, qBed, qComf, qPillow, qFood, senior, pwd, child, promo, total);
                     customerDatabase.add(guest);
                 }
             }
@@ -319,11 +352,17 @@ public class CheckInPanel extends javax.swing.JPanel {
         gender = new javax.swing.JLabel();
         maleButton = new javax.swing.JRadioButton();
         femaleButton = new javax.swing.JRadioButton();
-        otherButton = new javax.swing.JRadioButton();
         nationality = new javax.swing.JLabel();
         nationalityField = new javax.swing.JTextField();
         address = new javax.swing.JLabel();
-        addressField = new javax.swing.JTextField();
+        barangayField = new javax.swing.JTextField();
+        address1 = new javax.swing.JLabel();
+        municipalityField = new javax.swing.JTextField();
+        address2 = new javax.swing.JLabel();
+        provinceField = new javax.swing.JTextField();
+        address3 = new javax.swing.JLabel();
+        mobileNumber1 = new javax.swing.JLabel();
+        bdayField = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         roomNumber = new javax.swing.JLabel();
@@ -358,6 +397,11 @@ public class CheckInPanel extends javax.swing.JPanel {
         cancelReservationButton = new javax.swing.JButton();
         UpdateCheckInButton = new javax.swing.JButton();
         delCheckInDataButton = new javax.swing.JButton();
+        extraBedQuantity = new javax.swing.JSpinner();
+        extraComfortQuantity = new javax.swing.JSpinner();
+        extraPillowQuantity = new javax.swing.JSpinner();
+        foodSerQuantity = new javax.swing.JSpinner();
+        pwdDisCheckBox1 = new javax.swing.JCheckBox();
         searchField = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         searchButton = new javax.swing.JButton();
@@ -404,7 +448,8 @@ public class CheckInPanel extends javax.swing.JPanel {
             }
         });
 
-        gender.setText("Gender");
+        gender.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        gender.setText("Sex");
 
         maleButton.setText("Male");
         maleButton.addActionListener(new java.awt.event.ActionListener() {
@@ -420,13 +465,6 @@ public class CheckInPanel extends javax.swing.JPanel {
             }
         });
 
-        otherButton.setText("Other");
-        otherButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                otherButtonActionPerformed(evt);
-            }
-        });
-
         nationality.setText("Nationality");
 
         nationalityField.addActionListener(new java.awt.event.ActionListener() {
@@ -437,9 +475,35 @@ public class CheckInPanel extends javax.swing.JPanel {
 
         address.setText("Address");
 
-        addressField.addActionListener(new java.awt.event.ActionListener() {
+        barangayField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addressFieldActionPerformed(evt);
+                barangayFieldActionPerformed(evt);
+            }
+        });
+
+        address1.setText("Barangay");
+
+        municipalityField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                municipalityFieldActionPerformed(evt);
+            }
+        });
+
+        address2.setText("Municipality");
+
+        provinceField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                provinceFieldActionPerformed(evt);
+            }
+        });
+
+        address3.setText("Province");
+
+        mobileNumber1.setText("Birthday (YYYY-MM-DD)");
+
+        bdayField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bdayFieldActionPerformed(evt);
             }
         });
 
@@ -452,30 +516,41 @@ public class CheckInPanel extends javax.swing.JPanel {
                 .addGap(14, 14, 14)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(address)
-                            .addComponent(nationality))
+                        .addComponent(gender, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(maleButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(femaleButton)
                         .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(nationality)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(gender)
-                                .addGap(24, 24, 24)
-                                .addComponent(maleButton)
-                                .addGap(18, 18, 18)
-                                .addComponent(femaleButton)
-                                .addGap(18, 18, 18)
-                                .addComponent(otherButton))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(addressField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                                .addComponent(nationalityField)
-                                .addComponent(emailAddress, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(mobileNumber, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(fullName, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(fullNameField, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(mobileNumberField, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(emailAddressField, javax.swing.GroupLayout.Alignment.LEADING)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(mobileNumber1)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(barangayField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
+                                                .addComponent(municipalityField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
+                                                .addComponent(address3, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(provinceField, javax.swing.GroupLayout.Alignment.LEADING))
+                                            .addComponent(address2)
+                                            .addComponent(address1)
+                                            .addComponent(address))
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(emailAddress, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(mobileNumber, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(fullName, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(fullNameField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
+                                            .addComponent(mobileNumberField, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(emailAddressField, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(bdayField, javax.swing.GroupLayout.Alignment.LEADING))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(nationalityField))
+                        .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -489,7 +564,11 @@ public class CheckInPanel extends javax.swing.JPanel {
                 .addComponent(mobileNumber)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mobileNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(mobileNumber1)
+                .addGap(4, 4, 4)
+                .addComponent(bdayField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(emailAddress)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(emailAddressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -497,20 +576,29 @@ public class CheckInPanel extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(gender)
                     .addComponent(maleButton)
-                    .addComponent(femaleButton)
-                    .addComponent(otherButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(femaleButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(nationality)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nationalityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(address)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(addressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(address1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(barangayField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(address2)
+                .addGap(4, 4, 4)
+                .addComponent(municipalityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(address3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(provinceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
         );
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 410, 570));
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 410, 590));
 
         jPanel4.setBackground(new java.awt.Color(75, 146, 219));
 
@@ -678,7 +766,7 @@ public class CheckInPanel extends javax.swing.JPanel {
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel18.setText("Discount Types");
 
-        seniorDisCheckBox.setText("Senior Discount");
+        seniorDisCheckBox.setText("Senior discount");
         seniorDisCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 seniorDisCheckBoxActionPerformed(evt);
@@ -745,6 +833,37 @@ public class CheckInPanel extends javax.swing.JPanel {
             }
         });
 
+        extraBedQuantity.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                extraBedQuantityStateChanged(evt);
+            }
+        });
+
+        extraComfortQuantity.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                extraComfortQuantityStateChanged(evt);
+            }
+        });
+
+        extraPillowQuantity.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                extraPillowQuantityStateChanged(evt);
+            }
+        });
+
+        foodSerQuantity.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                foodSerQuantityStateChanged(evt);
+            }
+        });
+
+        pwdDisCheckBox1.setText("PWD discount");
+        pwdDisCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pwdDisCheckBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -752,25 +871,6 @@ public class CheckInPanel extends javax.swing.JPanel {
             .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(childDisCheckBox)
-                            .addComponent(seniorDisCheckBox)
-                            .addComponent(jLabel18)
-                            .addComponent(foodServiceCheckBox)
-                            .addComponent(extraPillowCheckBox)
-                            .addComponent(extraComforterCheckBox)
-                            .addComponent(extraBedCheckBox)
-                            .addComponent(jLabel16)
-                            .addComponent(additionalPerFee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel19)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtPromo, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(additionalPerFeeField, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
-                            .addComponent(totalChargeField)))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(71, 71, 71)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -781,8 +881,37 @@ public class CheckInPanel extends javax.swing.JPanel {
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(confirmCheckInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(UpdateCheckInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(UpdateCheckInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pwdDisCheckBox1)
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(childDisCheckBox)
+                                .addComponent(seniorDisCheckBox)
+                                .addComponent(jLabel18)
+                                .addComponent(jLabel16)
+                                .addComponent(additionalPerFee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel5Layout.createSequentialGroup()
+                                    .addComponent(jLabel19)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(txtPromo, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(additionalPerFeeField, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
+                                .addComponent(totalChargeField)
+                                .addGroup(jPanel5Layout.createSequentialGroup()
+                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(extraBedCheckBox)
+                                        .addComponent(extraComforterCheckBox)
+                                        .addComponent(extraPillowCheckBox)
+                                        .addComponent(foodServiceCheckBox))
+                                    .addGap(40, 40, 40)
+                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(foodSerQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(extraPillowQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(extraComfortQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(extraBedQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -794,29 +923,39 @@ public class CheckInPanel extends javax.swing.JPanel {
                 .addComponent(additionalPerFee)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(additionalPerFeeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(extraBedCheckBox)
+                    .addComponent(extraBedQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(extraComforterCheckBox)
+                    .addComponent(extraComfortQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(extraBedCheckBox)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(extraPillowCheckBox)
+                    .addComponent(extraPillowQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(extraComforterCheckBox)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(extraPillowCheckBox)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(foodServiceCheckBox)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(foodServiceCheckBox)
+                    .addComponent(foodSerQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
                 .addComponent(jLabel18)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(seniorDisCheckBox)
+                .addGap(7, 7, 7)
+                .addComponent(pwdDisCheckBox1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(childDisCheckBox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
                     .addComponent(txtPromo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel20)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(totalChargeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(UpdateCheckInButton, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(confirmCheckInButton))
@@ -824,7 +963,7 @@ public class CheckInPanel extends javax.swing.JPanel {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelReservationButton)
                     .addComponent(delCheckInDataButton))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(27, 27, 27))
         );
 
         add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 210, 410, 570));
@@ -850,10 +989,6 @@ public class CheckInPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_maleButtonActionPerformed
 
-    private void otherButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otherButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_otherButtonActionPerformed
-
     private void femaleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_femaleButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_femaleButtonActionPerformed
@@ -876,12 +1011,19 @@ public class CheckInPanel extends javax.swing.JPanel {
         
         String name = fullNameField.getText().replace(" ","_");
         String mobile = mobileNumberField.getText();
+        String birthday = bdayField.getText().replace("/", "-").trim();
         String email = emailAddressField.getText();
-        String gender = "Other";
-        if(maleButton.isSelected()) gender = "Male";
-        else if(femaleButton.isSelected()) gender = "Female";
+        String sex = "Male";
+        if (femaleButton.isSelected()) {
+            sex = "Female";
+        }
         String nationality = nationalityField.getText();
-        String address = addressField.getText().replace(", ","_").replace(",","_");
+        
+        String brgy = barangayField.getText().replace(",", "").trim();
+        String muni = municipalityField.getText().replace(",", "").trim();
+        String prov = provinceField.getText().replace(",", "").trim();
+        
+        String address = brgy + " - " + muni + " - " + prov;
         
         
         String rType = roomTypeField.getText();
@@ -899,7 +1041,12 @@ public class CheckInPanel extends javax.swing.JPanel {
         boolean exComf = extraComforterCheckBox.isSelected();
         boolean exPillow = extraPillowCheckBox.isSelected();
         boolean food = foodServiceCheckBox.isSelected();
+        int qBed = (Integer) extraBedQuantity.getValue();
+        int qComf = (Integer) extraComfortQuantity.getValue();
+        int qPillow = (Integer) extraPillowQuantity.getValue();
+        int qFood = (Integer) foodSerQuantity.getValue();
         boolean senior = seniorDisCheckBox.isSelected();
+        boolean pwd = pwdDisCheckBox1.isSelected();
         boolean child = childDisCheckBox.isSelected();
         String promo = txtPromo.getText();
         
@@ -910,9 +1057,9 @@ public class CheckInPanel extends javax.swing.JPanel {
             total = 0;
         } 
  
-        CheckInData newGuest = new CheckInData(name, mobile, email, gender, nationality, address,
+        CheckInData newGuest = new CheckInData(name, mobile, birthday, email, sex, nationality, address,
                                                room, rType, bType, rPrice, date, persons, addFee, exBed,
-                                               exComf, exPillow, food, senior, child, promo, total);
+                                               exComf, exPillow, food, qBed, qComf, qPillow, qFood, senior,pwd, child, promo, total);
         
         customerDatabase.add(newGuest);
         
@@ -948,14 +1095,29 @@ public class CheckInPanel extends javax.swing.JPanel {
        
         fullNameField.setText(guest.getName().replace("_"," "));
         mobileNumberField.setText(guest.getMobile());
+        bdayField.setText(guest.getBirthday());
         emailAddressField.setText(guest.getEmail());
         
-        if(guest.getGender().equals("Male")) maleButton.setSelected(true);
-        else if(guest.getGender().equals("Female")) femaleButton.setSelected(true);
-        else otherButton.setSelected(true);
-        
+       if(guest.getSex().equalsIgnoreCase("Female")) {
+           femaleButton.setSelected(true);
+       } else {
+           maleButton.setSelected(true);
+       }
         nationalityField.setText(guest.getNationality());
-        addressField.setText(guest.getAddress().replace("_", ", "));
+        
+        String fullAddress = guest.getAddress();
+        
+        if(fullAddress.contains("-")) {
+            String[] addrParts = fullAddress.split("-", -1);
+            
+            if(addrParts.length >= 1) barangayField.setText(addrParts[0]);
+            if(addrParts.length >= 2) municipalityField.setText(addrParts[1]);
+            if(addrParts.length >= 3) provinceField.setText(addrParts[2]);
+        } else {
+            barangayField.setText(fullAddress.replace("_", " "));
+            municipalityField.setText("");
+            provinceField.setText("");
+        }
         
         
         String guestRoom = guest.getRoomNumber();
@@ -990,7 +1152,13 @@ public class CheckInPanel extends javax.swing.JPanel {
         extraPillowCheckBox.setSelected(guest.isExtraPillow());
         foodServiceCheckBox.setSelected(guest.isFoodService());
         
+        extraBedQuantity.setValue(guest.getBedQty());
+        extraComfortQuantity.setValue(guest.getComfQty());
+        extraPillowQuantity.setValue(guest.getPillowQty());
+        foodSerQuantity.setValue(guest.getFoodQty());
+        
         seniorDisCheckBox.setSelected(guest.isSeniorDiscount());
+        pwdDisCheckBox1.setSelected(guest.isPwdDiscount());
         childDisCheckBox.setSelected(guest.isChildDiscount());
         txtPromo.setText(guest.getPromoCode());
         
@@ -1042,9 +1210,9 @@ public class CheckInPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_nationalityFieldActionPerformed
 
-    private void addressFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressFieldActionPerformed
+    private void barangayFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_barangayFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_addressFieldActionPerformed
+    }//GEN-LAST:event_barangayFieldActionPerformed
 
     private void roomNumberComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomNumberComboBoxActionPerformed
         // TODO add your handling code here:
@@ -1219,6 +1387,8 @@ public class CheckInPanel extends javax.swing.JPanel {
                // use setters to update the data
                guest.setMobile(mobileNumberField.getText());
                
+               String newBirthday = bdayField.getText().replace("/", "-");
+               guest.setBirthday(newBirthday);
                guest.setRoomType(roomTypeField.getText());
                guest.setBedType(bedTypeField.getText());
                try {
@@ -1236,6 +1406,7 @@ public class CheckInPanel extends javax.swing.JPanel {
                boolean isPillow = extraPillowCheckBox.isSelected();
                boolean isFood = foodServiceCheckBox.isSelected();
                boolean isSenior = seniorDisCheckBox.isSelected();
+               boolean isPwd = pwdDisCheckBox1.isSelected();
                boolean isChild = childDisCheckBox.isSelected();
                
                guest.setExtraBed(isExtraBed);
@@ -1243,19 +1414,33 @@ public class CheckInPanel extends javax.swing.JPanel {
                guest.setExtraPillow(isPillow);
                guest.setFoodService(isFood);
                
+               guest.setBedQty((Integer) extraBedQuantity.getValue());
+               guest.setComfQty((Integer) extraComfortQuantity.getValue());
+               guest.setPillowQty((Integer) extraPillowQuantity.getValue());
+               guest.setFoodQty((Integer) foodSerQuantity.getValue());
+               
                guest.setSeniorDiscount(isSenior);
+               guest.setPwdDiscount(isPwd);
                guest.setChildDiscount(isChild);
                
                guest.setEmail(emailAddressField.getText());
                guest.setNationality(nationalityField.getText());
-               guest.setAddress(addressField.getText().replace(", ","_").replace(",","_"));
+               
+               String brgy = barangayField.getText().replace(",", "").trim();
+               String muni = municipalityField.getText().replace(",", "").trim();
+               String prov = provinceField.getText().replace(",", "").trim();
+               
+               String fullAddress = brgy + " - " + muni + " - " + prov;
+               guest.setAddress(fullAddress);
                guest.setAdditionalFee(additionalPerFeeField.getText());
                guest.setPromoCode(txtPromo.getText());
                
-               String gender = "Other";
-               if(maleButton.isSelected()) gender = "Male";
-               else if(femaleButton.isSelected()) gender = "Female";
-               guest.setGender(gender);
+               String sex = "Male";
+               if (femaleButton.isSelected()) {
+                   sex = "female";
+               }
+               guest.setSex(sex);
+               
                // handle price (convert string to double
                try {
                    double newTotal = Double.parseDouble(totalChargeField.getText());
@@ -1327,7 +1512,9 @@ public class CheckInPanel extends javax.swing.JPanel {
         mobileNumberField.setText("");
         emailAddressField.setText("");
         nationalityField.setText("");
-        addressField.setText("");
+        barangayField.setText("");
+        municipalityField.setText("");
+        provinceField.setText("");
         
         roomNumberComboBox.setSelectedIndex(0);
         roomTypeField.setText("");
@@ -1345,13 +1532,17 @@ public class CheckInPanel extends javax.swing.JPanel {
         extraComforterCheckBox.setSelected(false);
         extraPillowCheckBox.setSelected(false);
         foodServiceCheckBox.setSelected(false);
+        
+        extraBedQuantity.setValue(0);
+        extraComfortQuantity.setValue(0);
+        extraPillowQuantity.setValue(0);
+        foodSerQuantity.setValue(0);
         seniorDisCheckBox.setSelected(false);
         childDisCheckBox.setSelected(false);
         
         // Reset Radio Buttons
         maleButton.setSelected(false);
         femaleButton.setSelected(false);
-        otherButton.setSelected(false);
     }
     private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed
         // TODO add your handling code here:
@@ -1366,6 +1557,39 @@ public class CheckInPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         calculateTotal();
     }//GEN-LAST:event_additionalPerFeeFieldKeyReleased
+
+    private void municipalityFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_municipalityFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_municipalityFieldActionPerformed
+
+    private void provinceFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_provinceFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_provinceFieldActionPerformed
+
+    private void bdayFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bdayFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bdayFieldActionPerformed
+
+    private void pwdDisCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwdDisCheckBox1ActionPerformed
+        // TODO add your handling code here:
+        calculateTotal();
+    }//GEN-LAST:event_pwdDisCheckBox1ActionPerformed
+
+    private void extraBedQuantityStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_extraBedQuantityStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_extraBedQuantityStateChanged
+
+    private void extraComfortQuantityStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_extraComfortQuantityStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_extraComfortQuantityStateChanged
+
+    private void extraPillowQuantityStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_extraPillowQuantityStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_extraPillowQuantityStateChanged
+
+    private void foodSerQuantityStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_foodSerQuantityStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_foodSerQuantityStateChanged
     
     
     public static void main(String[] args) {
@@ -1393,7 +1617,11 @@ public class CheckInPanel extends javax.swing.JPanel {
     private javax.swing.JLabel additionalPerFee;
     private javax.swing.JTextField additionalPerFeeField;
     private javax.swing.JLabel address;
-    private javax.swing.JTextField addressField;
+    private javax.swing.JLabel address1;
+    private javax.swing.JLabel address2;
+    private javax.swing.JLabel address3;
+    private javax.swing.JTextField barangayField;
+    private javax.swing.JTextField bdayField;
     private javax.swing.JLabel bedType;
     private javax.swing.JTextField bedTypeField;
     private javax.swing.JButton cancelReservationButton;
@@ -1406,9 +1634,13 @@ public class CheckInPanel extends javax.swing.JPanel {
     private javax.swing.JLabel emailAddress;
     private javax.swing.JTextField emailAddressField;
     private javax.swing.JCheckBox extraBedCheckBox;
+    private javax.swing.JSpinner extraBedQuantity;
+    private javax.swing.JSpinner extraComfortQuantity;
     private javax.swing.JCheckBox extraComforterCheckBox;
     private javax.swing.JCheckBox extraPillowCheckBox;
+    private javax.swing.JSpinner extraPillowQuantity;
     private javax.swing.JRadioButton femaleButton;
+    private javax.swing.JSpinner foodSerQuantity;
     private javax.swing.JCheckBox foodServiceCheckBox;
     private javax.swing.JLabel fullName;
     private javax.swing.JTextField fullNameField;
@@ -1426,14 +1658,17 @@ public class CheckInPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JRadioButton maleButton;
     private javax.swing.JLabel mobileNumber;
+    private javax.swing.JLabel mobileNumber1;
     private javax.swing.JTextField mobileNumberField;
+    private javax.swing.JTextField municipalityField;
     private javax.swing.JLabel nationality;
     private javax.swing.JTextField nationalityField;
     private javax.swing.JLabel numPersonStay;
     private javax.swing.JSpinner numPersonStaySpinner;
-    private javax.swing.JRadioButton otherButton;
     private javax.swing.JLabel price;
     private javax.swing.JTextField priceField;
+    private javax.swing.JTextField provinceField;
+    private javax.swing.JCheckBox pwdDisCheckBox1;
     private javax.swing.JLabel roomNumber;
     private javax.swing.JComboBox<String> roomNumberComboBox;
     private javax.swing.JLabel roomType;

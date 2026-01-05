@@ -1,8 +1,1 @@
-101,Keith_Nico_Carcueba,09488895618,keith@gmail.com,Male,Filipino,Bacolod Irosin_Sorsogon,Standard,Single,1500.0,2025-12-17,2,500,true,false,false,false,false,false,,2500.0,2025-12-19,CheckedOut,2025-12-19
-301,Kyle_Ivan_Carcueba,09301214561,kyle@gmail.com,Male,Filipino,Bacolod Irosin_Sorsogon,Family,Queen,5500.0,2025-12-17,2,500,true,false,true,true,true,false,PROMO100,5420.0,2025-12-19,CheckedOut,2025-12-19
-102,Kathleen_Jen_Carcueba,09488895618,kath@gmail.com,Female,Filipino,Bacolod Irosin_Sorsogon,Standard,Single,1500.0,2025-12-17,2,,false,false,false,false,false,false,,1500.0,2025-12-19,CheckedOut,2025-12-19
-101,Jake_Latam,0978992593,jkae@gmail.com,Male,Filipino,South_Korea,Standard,Single,1500.0,2025-12-17,2,,false,false,false,false,false,false,,1500.0,2025-12-19,CheckedOut,2025-12-19
-102,Nikki_Shikimura,090742842942,nikki@gmailcom,Female,Filipino,South_Korea,Standard,Single,1500.0,2025-12-18,4,,false,false,false,false,false,false,,1500.0,2025-12-19,CheckedOut,2025-12-19
-102,John_Carlos_Galid0,0932474652,john@gmail.com,Male,Filipiono,San Julian Irosin_Sorsogon,Standard,Single,1500.0,2025-12-18,2,500,false,false,false,false,true,false,PROMO100,1500.0,2025-12-19,CheckedOut,2025-12-19
-305,Sofia_The_First,09742942424,sofia@gmail.com,Female,Filipino,Pilar_Sorsogon,Family,Queen,5500.0,2025-12-5,3,,false,false,false,false,false,false,,5500.0,2025-12-19,CheckedOut,2025-12-19
-102,Althea_Pura,09123456789,althea@gmail.com,Female,Filipino,Bacolod Irosin_Sorsogon,Standard,Single,1500.0,2025-12-10,2,,false,false,false,false,false,false,,1500.0,2025-12-19,CheckedOut,2025-12-19
+101,Keith_Nico_Carcueba,09488895618,2005-11-11,keithnicocarcueba1@gmail.com,Male,Filipino,Sorsogon -  - ,Standard,Single,1500.0,2026-01-01,3,500,true,true,true,true,1,2,3,3,true,false,true,,2361.6,2026-01-02,CheckedOut,2026-01-02

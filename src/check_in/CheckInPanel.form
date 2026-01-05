@@ -48,7 +48,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="210" y="210" width="410" height="570"/>
+          <AbsoluteConstraints x="210" y="210" width="410" height="590"/>
         </Constraint>
       </Constraints>
 
@@ -60,35 +60,50 @@
                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="address" min="-2" max="-2" attributes="0"/>
-                              <Component id="nationality" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="gender" min="-2" pref="35" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="maleButton" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="femaleButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="nationality" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="338" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="gender" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                                  <Component id="maleButton" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="femaleButton" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="otherButton" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="mobileNumber1" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                                  <Component id="barangayField" alignment="0" pref="372" max="32767" attributes="0"/>
+                                                  <Component id="municipalityField" alignment="0" pref="372" max="32767" attributes="0"/>
+                                                  <Component id="address3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="provinceField" alignment="0" max="32767" attributes="0"/>
+                                              </Group>
+                                              <Component id="address2" min="-2" max="-2" attributes="0"/>
+                                              <Component id="address1" min="-2" max="-2" attributes="0"/>
+                                              <Component id="address" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="emailAddress" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="mobileNumber" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="fullName" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="fullNameField" alignment="0" pref="372" max="32767" attributes="0"/>
+                                              <Component id="mobileNumberField" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="emailAddressField" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="bdayField" alignment="0" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="addressField" alignment="0" pref="300" max="32767" attributes="0"/>
-                                  <Component id="nationalityField" max="32767" attributes="0"/>
-                                  <Component id="emailAddress" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="mobileNumber" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="fullName" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="fullNameField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="mobileNumberField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="emailAddressField" alignment="0" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="nationalityField" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -106,7 +121,11 @@
                   <Component id="mobileNumber" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="mobileNumberField" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace pref="29" max="32767" attributes="0"/>
+                  <Component id="mobileNumber1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                  <Component id="bdayField" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="emailAddress" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="emailAddressField" min="-2" max="-2" attributes="0"/>
@@ -115,17 +134,26 @@
                       <Component id="gender" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="maleButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="femaleButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="otherButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="nationality" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="nationalityField" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="address" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="addressField" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="address1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="barangayField" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="address2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                  <Component id="municipalityField" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="address3" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="provinceField" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -179,7 +207,10 @@
         </Component>
         <Component class="javax.swing.JLabel" name="gender">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Gender"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Sex"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="maleButton">
@@ -198,14 +229,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="femaleButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="otherButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Other"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="otherButtonActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JLabel" name="nationality">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nationality"/>
@@ -221,9 +244,44 @@
             <Property name="text" type="java.lang.String" value="Address"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="addressField">
+        <Component class="javax.swing.JTextField" name="barangayField">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addressFieldActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="barangayFieldActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="address1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Barangay"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="municipalityField">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="municipalityFieldActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="address2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Municipality"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="provinceField">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="provinceFieldActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="address3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Province"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="mobileNumber1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Birthday (YYYY-MM-DD)"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="bdayField">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bdayFieldActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -414,28 +472,6 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="childDisCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="seniorDisCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="foodServiceCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="extraPillowCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="extraComforterCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="extraBedCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="additionalPerFee" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jLabel20" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="txtPromo" min="-2" pref="187" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="additionalPerFeeField" pref="367" max="32767" attributes="0"/>
-                              <Component id="totalChargeField" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" attributes="0">
@@ -450,8 +486,44 @@
                               </Group>
                           </Group>
                       </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="pwdDisCheckBox1" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="childDisCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="seniorDisCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="additionalPerFee" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jLabel20" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="txtPromo" min="-2" pref="187" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="additionalPerFeeField" pref="367" max="32767" attributes="0"/>
+                                  <Component id="totalChargeField" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="extraBedCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="extraComforterCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="extraPillowCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="foodServiceCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="foodSerQuantity" min="-2" max="-2" attributes="0"/>
+                                          <Component id="extraPillowQuantity" min="-2" max="-2" attributes="0"/>
+                                          <Component id="extraComfortQuantity" min="-2" max="-2" attributes="0"/>
+                                          <Component id="extraBedQuantity" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="28" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -465,18 +537,32 @@
                   <Component id="additionalPerFee" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="additionalPerFeeField" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="extraBedCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="extraBedQuantity" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="extraComforterCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="extraComfortQuantity" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="extraBedCheckBox" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="extraPillowCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="extraPillowQuantity" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="extraComforterCheckBox" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="extraPillowCheckBox" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="foodServiceCheckBox" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="foodServiceCheckBox" min="-2" max="-2" attributes="0"/>
+                      <Component id="foodSerQuantity" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="seniorDisCheckBox" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                  <Component id="pwdDisCheckBox1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="childDisCheckBox" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -484,11 +570,11 @@
                       <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtPromo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="totalChargeField" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                  <EmptySpace pref="29" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="UpdateCheckInButton" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="confirmCheckInButton" min="-2" max="-2" attributes="0"/>
@@ -498,7 +584,7 @@
                       <Component id="cancelReservationButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="delCheckInDataButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -581,7 +667,7 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="seniorDisCheckBox">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Senior Discount"/>
+            <Property name="text" type="java.lang.String" value="Senior discount"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="seniorDisCheckBoxActionPerformed"/>
@@ -656,6 +742,34 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="delCheckInDataButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="extraBedQuantity">
+          <Events>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="extraBedQuantityStateChanged"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="extraComfortQuantity">
+          <Events>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="extraComfortQuantityStateChanged"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="extraPillowQuantity">
+          <Events>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="extraPillowQuantityStateChanged"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="foodSerQuantity">
+          <Events>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="foodSerQuantityStateChanged"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="pwdDisCheckBox1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="PWD discount"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pwdDisCheckBox1ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

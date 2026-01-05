@@ -23,7 +23,7 @@ public class CheckOutData {
    public static class Customer {
     public String roomNumber, name, mobile, email, roomType, bedType, checkIn, status;
     
-    public double price, extraPersonFee, extraRequestFee, discount; // Added discount
+    public double price, extraPersonFee, extraRequestFee, discount;
     
     public boolean isSenior,isChild;
     public String promoCode;
@@ -59,35 +59,35 @@ public java.util.ArrayList<Customer> loadCustomers() {
                 String[] d = line.split(",", -1);
                 
                 // 23 COLUMNS
-                if (d.length >= 23) {
+                if (d.length >= 28) {
                     try {
                         
                         double roomPrice = 0.0;
-                        if(d[9].isEmpty() == false) {
-                            roomPrice = Double.parseDouble(d[9]);
+                        if(d[10].isEmpty() == false) {
+                            roomPrice = Double.parseDouble(d[10]);
                         }
                         
                         double extraPerson = 0.0;
-                        if(d[12].isEmpty() == false) {
-                            extraPerson = Double.parseDouble(d[12]);
+                        if(d[13].isEmpty() == false) {
+                            extraPerson = Double.parseDouble(d[13]);
                         }
                         
                     double reqFee = 0;
                     
                     
 
-                    if (Boolean.parseBoolean(d[13])) { reqFee += 500; } // extra bed
-                    if (Boolean.parseBoolean(d[14])) { reqFee += 200; } // comforter
-                    if (Boolean.parseBoolean(d[15])) { reqFee += 100; } // pillow
-                    if (Boolean.parseBoolean(d[16])) { reqFee += 300; } // food
+                    if (Boolean.parseBoolean(d[14])) { reqFee += 500; } // extra bed
+                    if (Boolean.parseBoolean(d[15])) { reqFee += 200; } // comforter
+                    if (Boolean.parseBoolean(d[16])) { reqFee += 100; } // pillow
+                    if (Boolean.parseBoolean(d[17])) { reqFee += 300; } // food
                     
                     
                     double grossTotal = roomPrice + extraPerson + reqFee;
                     double runningTotal = grossTotal;
                     
-                    boolean isSenior = Boolean.parseBoolean(d[17]);
-                    boolean isChild = Boolean.parseBoolean(d[18]);
-                    String promo = d[19];
+                    boolean isSenior = Boolean.parseBoolean(d[22]);
+                    boolean isChild = Boolean.parseBoolean(d[24]);
+                    String promo = d[25];
                     
                     //  Senior 20%
                     if (isSenior) {
@@ -111,12 +111,12 @@ public java.util.ArrayList<Customer> loadCustomers() {
                         d[0].trim(),  // Room Number (Index 0)
                         d[1].trim(),  // Name
                         d[2].trim(),  // Mobile
-                        d[3].trim(),  // Email
-                        d[7].trim(),  // Room Type
-                        d[8].trim(),  // Bed Type
-                        Double.parseDouble(d[9]),  // Price
-                        d[10].trim(), // Check-In Date
-                        d[22].trim(), // Status (Index 22 - The Last One)
+                        d[4].trim(),  // Email
+                        d[8].trim(),  // Room Type
+                        d[9].trim(),  // Bed Type                        
+                        roomPrice,
+                        d[11].trim(), // Check-In Date
+                        d[28].trim(), // Status (Index 22 - The Last One)
                         extraPerson, // Extra Person Fee (Index 12)
                         reqFee,       // Calculated Request Fee
                         calculatedDiscount, // Discount (Index 20)
@@ -162,20 +162,20 @@ public boolean checkoutCustomer(String roomNumber, double extraPerson, double ex
         while ((line = br.readLine()) != null) {
             String[] d = line.split(",");
             
-            if (d.length >= 23 && d[0].trim().equals(roomNumber.trim()) && d[22].trim().equals("CheckedIn")) {
+            if (d.length >= 28 && d[0].trim().equals(roomNumber.trim()) && d[28].trim().equals("CheckedIn")) {
                 
                 java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("yyyy-M-d");
                 
-                LocalDate checkInDate = LocalDate.parse(d[10].trim(), formatter);
+                LocalDate checkInDate = LocalDate.parse(d[11].trim(), formatter);
                 
                 long days = ChronoUnit.DAYS.between(checkInDate, LocalDate.now());
                 
                 
                 if (days <= 0) days = 1;
-                double roomCharge = Double.parseDouble(d[9]) * days;
+                double roomCharge = Double.parseDouble(d[10]) * days;
 
-                d[21] = today;// checkout date
-                d[22] = "CheckedOut"; // status
+                d[27] = today;// checkout date
+                d[28] = "CheckedOut"; // status
                 
                 saveHistory(d);              
                 saveBill(d, days, roomCharge, extraPerson, extraRequest, discount, total);
@@ -206,12 +206,12 @@ public boolean checkoutCustomer(String roomNumber, double extraPerson, double ex
                           LocalDate.now() + "," +// (Bill Id)
                           d[1] + "," +           // 0: Name
                           d[2] + "," +           // 5: Mobile
-                          d[3] + "," +           // 6: Email
+                          d[4] + "," +           // 6: Email
                           d[0] + "," +           // 1: Room
-                          d[7] + "," +           // 7: Room Type
-                          d[8] + "," +           // 8: Bed Type
-                          d[9] + "," +           // 9: Price per night
-                          d[10] + "," +          // 2: Check-In
+                          d[8] + "," +           // 7: Room Type
+                          d[9] + "," +           // 8: Bed Type
+                          d[10] + "," +           // 9: Price per night
+                          d[11] + "," +          // 2: Check-In
                           LocalDate.now() + "," + // 3: Check-Out Date
                           days + "," +           // 10: Total Days
                           rc + "," +             // 11: Room Charges Total
